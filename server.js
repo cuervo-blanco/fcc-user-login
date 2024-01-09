@@ -22,7 +22,7 @@ app.use(session({
 	cookie: { secure: false}
 }));
 
-app(passport.initialize(), passport.session());
+app.use(passport.initialize(), passport.session());
 
 app.route('/').get((req, res) => {
 	res.render('index', {title: "Hello", message: "Please log in"}); });

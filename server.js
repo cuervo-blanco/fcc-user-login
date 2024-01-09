@@ -3,6 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
+const session = require('express-session');
+const passport = require('passport');
+
 
 
 const app = express();
@@ -22,7 +25,8 @@ app.use(session({
 	cookie: { secure: false}
 }));
 
-app.use(passport.initialize(), passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.route('/').get((req, res) => {
 	res.render('index', {title: "Hello", message: "Please log in"}); });
